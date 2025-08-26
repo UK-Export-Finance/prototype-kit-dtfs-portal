@@ -1,0 +1,237 @@
+{#
+Universal Banner Component
+A reusable blue summary box component for displaying key application information
+#}
+
+{% macro universalBanner(data) %}
+<div class="universal-banner govuk-!-margin-bottom-6">
+  <table class="universal-banner__table">
+    <tbody>
+      <!-- Top Section: 8 key-value pairs in 2 columns -->
+      <tr class="universal-banner__row">
+        <td class="universal-banner__cell universal-banner__cell--left">
+          <table class="universal-banner__inner-table">
+            <tbody>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Status</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="">
+                    <strong class="govuk-tag">
+                      {{ data.status }}
+                    </strong>
+                  </span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Date created</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.dateCreated }}</span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Created by</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.createdBy }}</span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Checked by</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.checkedBy }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="universal-banner__cell universal-banner__cell--right">
+          <table class="universal-banner__inner-table">
+            <tbody>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Product</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.product }}</span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Type</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.type }}</span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Exporter</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.exporter }}</span>
+                </td>
+              </tr>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Buyer</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.buyer or 'Not specified' }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      <!-- Separator line -->
+      <tr class="universal-banner__separator-row">
+        <td colspan="2" class="universal-banner__separator"></td>
+      </tr>
+      
+      <!-- Bottom Section: 2 key-value pairs in 2 columns -->
+      <tr class="universal-banner__row">
+        <td class="universal-banner__cell universal-banner__cell--left">
+          <table class="universal-banner__inner-table">
+            <tbody>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">Sent to UKEF</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.sentToUKEF }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="universal-banner__cell universal-banner__cell--right">
+          <table class="universal-banner__inner-table">
+            <tbody>
+              <tr class="universal-banner__inner-row">
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__label">UKEF deal ID</span>
+                </td>
+                <td class="universal-banner__inner-cell">
+                  <span class="universal-banner__value">{{ data.ukefDealId }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+.universal-banner {
+  background-color: #1d70b8;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 24px 0;
+  font-family: "GDS Transport", "Arial", sans-serif;
+}
+
+.universal-banner__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.universal-banner__row {
+  border: none;
+}
+
+.universal-banner__cell {
+  width: 50%;
+  vertical-align: top;
+  padding: 32px;
+}
+
+.universal-banner__inner-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.universal-banner__inner-row {
+  border: none;
+}
+
+.universal-banner__inner-row:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.universal-banner__inner-cell {
+  padding: 0;
+  border: none;
+  vertical-align: top;
+}
+
+.universal-banner__inner-cell:first-child {
+  width: 40%;
+  padding-right: 24px;
+}
+
+.universal-banner__inner-cell:last-child {
+  width: 60%;
+}
+
+.universal-banner__label {
+  display: block;
+  font-size: 19px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  font-family: "GDS Transport", "Arial", sans-serif;
+}
+
+.universal-banner__value {
+  display: block;
+  font-size: 19px;
+  color: #ffffff;
+  line-height: 1.4;
+  font-family: "GDS Transport", "Arial", sans-serif;
+}
+
+.universal-banner__separator-row {
+  border: none;
+}
+
+.universal-banner__separator {
+  height: 1px;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0 32px;
+}
+
+/* GDS Blue tag styling */
+.universal-banner .govuk-tag--blue {
+  background-color: #ffffff;
+  color: #1d70b8;
+  border: 1px solid #ffffff;
+  font-family: "GDS Transport", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Add extra spacing between rows */
+.universal-banner__inner-row {
+  margin-bottom: 20px;
+}
+
+.universal-banner__inner-row:last-child {
+  margin-bottom: 0;
+}
+</style>
+{% endmacro %}

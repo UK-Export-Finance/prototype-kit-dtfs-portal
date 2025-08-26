@@ -1,3 +1,8 @@
 {
-  "serviceName": "Get a guarantee for export finance"
+  "serviceName": "Get a guarantee for export finance",
+"plugins": {
+"govuk-frontend": {
+"rebrand": true
+      }
+  }
 }

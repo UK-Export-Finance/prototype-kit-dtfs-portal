@@ -1,0 +1,97 @@
+{% extends "layouts/dashboard.html" %}
+
+{% set activePage = "profile" %}
+
+{% block pageTitle %}
+  User Profile
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Main heading -->
+    <h1 class="govuk-heading-xl">Logged in as John Doe</h1>
+
+    <!-- Account Information Section -->
+    <div class="govuk-!-margin-bottom-8">
+      <h2 class="govuk-heading-l">Account information</h2>
+      
+      <!-- Summary List component for account details -->
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            John
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Surname
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Doe
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            john.doe@ukexportfinance.gov.uk
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            User roles
+          </dt>
+          <dd class="govuk-summary-list__value">
+            maker, checker, payment-report-officer
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Bank
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Santander Bank
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last logged in
+          </dt>
+          <dd class="govuk-summary-list__value">
+            26/08/2025 11:21:00
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="govuk-button-group">
+      <button type="submit" class="govuk-button govuk-button--primary" data-module="govuk-button">
+        Change password
+      </button>
+      
+      <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

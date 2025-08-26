@@ -4,3 +4,22 @@
 // 
 
 // Add extra styles here
+
+// Set max-width for main layout container
+.govuk-width-container {
+  max-width: 1280px !important;
+  margin: 0 auto;
+}
+
+// Alternative approach - target the main content area
+.govuk-main-wrapper {
+  max-width: 1280px !important;
+  margin: 0 auto;
+}
+
+// Ensure the layout respects the max-width
+.govuk-template {
+  .govuk-width-container {
+    max-width: 1280px !important;
+  }
+}

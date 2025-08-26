@@ -1,0 +1,81 @@
+{% extends "layouts/dashboard.html" %}
+
+{% set activePage = "reports" %}
+
+{% block pageTitle %}
+  Reports
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Main heading -->
+    <h1 class="govuk-heading-xl">Reports</h1>
+    
+
+      <!-- Horizontal divider within section -->
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible govuk-!-margin-bottom-8" style="border-top: 2px solid #000;">
+      
+    <!-- Section 1: Facilities Status -->
+    <div class="govuk-!-margin-bottom-8">
+      <h2 class="govuk-heading-m">You have issued all facilities</h2>
+      
+      <!-- Overdue Status -->
+      <h3 class="govuk-heading-s" style="color: #d4351c; margin-bottom: 8px;">Overdue</h3>
+      <p class="govuk-body govuk-!-margin-bottom-6" style="color: #6b7280;">
+        You have 0 facilities that have past the deadline for issuing
+      </p>
+
+      <!-- Horizontal divider within section -->
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-bottom-6">
+
+      <!-- Less than 15 days left Status -->
+      <h3 class="govuk-heading-s" style="color: #d4351c; margin-bottom: 8px;">Less than 15 days left</h3>
+      <p class="govuk-body govuk-!-margin-bottom-6" style="color: #6b7280;">
+        You have 0 facilities that need issuing
+      </p>
+    </div>
+
+    <!-- Horizontal divider -->
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible govuk-!-margin-bottom-8">
+
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible govuk-!-margin-bottom-8" style="border-top: 2px solid #000;">
+
+
+    <!-- Section 2: UKEF Decisions Status -->
+    <div class="govuk-!-margin-bottom-8">
+      <h2 class="govuk-heading-m">You have reviewed all UKEF decisions</h2>
+      
+      <!-- Manual inclusion application without conditions -->
+      <div class="govuk-!-margin-bottom-6">
+        <h3 class="govuk-heading-s">Manual inclusion application without conditions:</h3>
+        
+        <h4 class="govuk-heading-s" style="color: #d4351c; margin-bottom: 8px;">Less than 10 days left</h4>
+        <p class="govuk-body govuk-!-margin-bottom-6" style="color: #6b7280;">
+          You have 0 UKEF decisions to review
+        </p>
+      </div>
+
+      <!-- Horizontal divider within section -->
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-bottom-6">
+
+      <!-- Manual inclusion application with conditions -->
+      <div class="govuk-!-margin-bottom-6">
+        <h3 class="govuk-heading-s">Manual inclusion application with conditions:</h3>
+        
+        <h4 class="govuk-heading-s" style="color: #d4351c; margin-bottom: 8px;">Less than 20 days left</h4>
+        <p class="govuk-body govuk-!-margin-bottom-6" style="color: #6b7280;">
+          You have 0 UKEF decisions to review
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

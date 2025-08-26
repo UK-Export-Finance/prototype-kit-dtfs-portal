@@ -1,0 +1,30 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block header %}
+{{ govukHeader({
+    rebrand: true
+}) }}
+
+{{ govukServiceNavigation({
+    serviceName: serviceName, 
+    serviceUrl: "/v01/start-pages/overview", 
+    navigation: [
+        { text: "Dashboard", href: "/v01/dashboard-deals" }
+    ]
+}) }}
+{% endblock %}
+
+{% block footer %}
+{{ govukFooter({ 
+    rebrand: true 
+}) }}
+{% endblock %}

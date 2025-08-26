@@ -1,0 +1,92 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block header %}
+{{ govukHeader({
+    rebrand: true
+}) }}
+
+<section aria-label="Service information" class="govuk-service-navigation"
+  data-module="govuk-service-navigation">
+  <div class="govuk-width-container">
+    <div class="govuk-service-navigation__container">
+      <span class="govuk-service-navigation__service-name">
+        <a href="/v01/dashboard-deals" class="govuk-service-navigation__link">
+            Get a guarantee for export finance
+        </a>
+      </span>
+      <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+          Menu
+        </button>
+        <ul class="govuk-service-navigation__list" id="navigation">
+         
+          <li class="govuk-service-navigation__item {% if activePage == 'dashboard' %}govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="dashboard-deals.html" {% if activePage == 'dashboard' %}aria-current="true"{% endif %}>
+              {% if activePage == 'dashboard' %}<strong class="govuk-service-navigation__active-fallback">{% endif %}Dashboard{% if activePage == 'dashboard' %}</strong>{% endif %}
+            </a>
+          </li>
+          <li class="govuk-service-navigation__item {% if activePage == 'reports' %}govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="dashboard-reports.html" {% if activePage == 'reports' %}aria-current="true"{% endif %}>
+              {% if activePage == 'reports' %}<strong class="govuk-service-navigation__active-fallback">{% endif %}Reports{% if activePage == 'reports' %}</strong>{% endif %}
+            </a>
+          </li>
+          
+          <!-- <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+                Report GEF utilisation and fees
+            </a>
+          </li>
+          <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+                Previous GEF reports
+            </a>
+          </li> -->
+          <!-- <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+             Users 
+            </a>
+          </li> -->
+          <li class="govuk-service-navigation__item {% if activePage == 'profile' %}govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="dashboard-profile.html" {% if activePage == 'profile' %}aria-current="true"{% endif %}>
+              {% if activePage == 'profile' %}<strong class="govuk-service-navigation__active-fallback">{% endif %}Profile{% if activePage == 'profile' %}</strong>{% endif %}
+            </a>
+          </li>
+          <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+            Sign out
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+</section>
+
+<div class="govuk-phase-banner govuk-width-container govuk-!-padding-top-10 govuk-!-margin-top-0">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      Prototype
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{{ govukFooter({ 
+    rebrand: true 
+}) }}
+{% endblock %}

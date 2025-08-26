@@ -1,0 +1,579 @@
+{% extends "layouts/dashboard.html" %}
+
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  Facilities – {{ serviceName }}
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-xl">Applications and notices</h1>
+        </div>
+      
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-group moj-button-group--inline">
+      
+            <button type="submit" class="govuk-button govuk-button--primary" data-module="govuk-button">
+              Create new
+            </button>
+      
+            <!-- <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Share collection
+            </button> -->
+      
+          </div>
+        </div>
+      
+      </div>
+
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+        <ul class="moj-sub-navigation__list">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="dashboard-deals.html">Deals</a>
+          </li>
+      
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page" href="dashboard-facilities.html">Facilities</a>
+          </li>
+        </ul>
+      
+      </nav>
+
+    
+  <!-- FILTER MODULE STARTS HERE -->
+  <div class="moj-filter-layout__filter" id="showHideFilter" style="display: none;">
+
+    <div class="moj-filter">
+
+      <div class="moj-filter__header">
+
+        <div class="moj-filter__header-title">
+          <h2 class="govuk-heading-m">Filter</h2>
+        </div>
+
+        <div class="moj-filter__header-action">
+
+        </div>
+
+      </div>
+
+      <div class="moj-filter__content">
+
+        <div class="moj-filter__selected">
+
+          <div class="moj-filter__selected-heading">
+
+            <div class="moj-filter__heading-title">
+              <h2 class="govuk-heading-m">Selected filters</h2>
+            </div>
+
+            <div class="moj-filter__heading-action">
+              <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+            </div>
+
+          </div>
+          <p> No filters selected</p>
+
+          <!--
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Product</h3>
+
+          <ul class="moj-filter-tags">
+
+            <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span>
+                EXIP</a></li>
+
+          </ul>
+
+          -->
+
+        </div>
+
+        <div class="moj-filter__options">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Apply filters
+          </button>
+
+          <!-- Keyword Section -->
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="keywords">
+              Keyword
+            </label>
+            <input class="govuk-input" id="keywords" name="keywords" type="text" placeholder="Enter keyword to search">
+            
+            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" style="margin-top: 15px;">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="created-by-you" name="created-by-you" type="checkbox" value="true">
+                <label class="govuk-label govuk-checkboxes__label" for="created-by-you">
+                  Created by you
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Facility Type Section -->
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                Facility type
+              </legend>
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+               
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="facility-cash" name="facility-type" type="checkbox" value="cash">
+                  <label class="govuk-label govuk-checkboxes__label" for="facility-cash">
+                    Cash
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="facility-contingent" name="facility-type" type="checkbox" value="contingent">
+                  <label class="govuk-label govuk-checkboxes__label" for="facility-contingent">
+                    Contingent
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="facility-loan" name="facility-type" type="checkbox" value="loan">
+                  <label class="govuk-label govuk-checkboxes__label" for="facility-loan">
+                    Loan
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="facility-bond" name="facility-type" type="checkbox" value="bond">
+                  <label class="govuk-label govuk-checkboxes__label" for="facility-bond">
+                    Bond
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Notice Type Section -->
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                Notice type
+              </legend>
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="notice-auto-inclusion" name="notice-type" type="checkbox" value="automatic-inclusion-notice">
+                  <label class="govuk-label govuk-checkboxes__label" for="notice-auto-inclusion">
+                    Automatic Inclusion Notice
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="notice-manual-application" name="notice-type" type="checkbox" value="manual-inclusion-application">
+                  <label class="govuk-label govuk-checkboxes__label" for="notice-manual-application">
+                    Manual Inclusion Application
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="notice-manual-inclusion" name="notice-type" type="checkbox" value="manual-inclusion-notice">
+                  <label class="govuk-label govuk-checkboxes__label" for="notice-manual-inclusion">
+                    Manual Inclusion Notice
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Facility Stage Section -->
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                Bank's facility stage
+              </legend>
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="stage-issued" name="facility-stage" type="checkbox" value="issued">
+                  <label class="govuk-label govuk-checkboxes__label" for="stage-issued">
+                    Issued
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="stage-unissued" name="facility-stage" type="checkbox" value="unissued">
+                  <label class="govuk-label govuk-checkboxes__label" for="stage-unissued">
+                    Unissued
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="stage-risk-expired" name="facility-stage" type="checkbox" value="risk-expired">
+                  <label class="govuk-label govuk-checkboxes__label" for="stage-risk-expired">
+                    Risk expired
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- FILTER MODULE ENDS HERE -->
+
+
+
+  <div class="moj-filter-layout__content">
+
+    <div class="moj-action-bar">
+
+
+      <div class="moj-action-bar">
+        <div class="moj-action-bar__filter">
+          <button class="govuk-button govuk-button--secondary" type="button" aria-haspopup="true" aria-expanded="false"
+            onclick="toggleFilter(this)">
+            Show filter
+          </button>
+        </div>
+
+        <div class="moj-button-menu" data-module="moj-button-menu" style="display: none;">
+
+          <button type="submit"
+            class="govuk-button moj-button-menu__item govuk-button--secondary govuk-button--secondary"
+            data-module="govuk-button">
+            Action 1
+          </button>
+
+          <button type="submit"
+            class="govuk-button moj-button-menu__item govuk-button--secondary govuk-button--secondary govuk-button--secondary"
+            data-module="govuk-button">
+            Action 2
+          </button>
+
+        </div>
+
+
+
+
+        <button type="submit" class="govuk-button" data-module="govuk-button" style="float: right; display: none;">
+          Start approval
+        </button>
+      </div>
+
+
+
+
+            <table class="govuk-table" data-module="moj-sortable-table">
+
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="ascending">
+              <button type="button" class="govuk-table__header-button">
+                Exporter
+             
+              </button>
+            </th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Facility name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">UKEF facility ID</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Facility type</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Notice type</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Value</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Bank's facility stage</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Issued date</th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          <!-- Row 1 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">BRITISH EXPORT FINANCE GROUP</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">London Trade Facility 2025</a></td>
+            <td class="govuk-table__cell">0041718540</td>
+            <td class="govuk-table__cell">Contingent</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">USD 1,909,929.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">26 Aug 2025</td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">GLOBAL TRADE SOLUTIONS PLC</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Manchester Export Credit</a></td>
+            <td class="govuk-table__cell">0041718539</td>
+            <td class="govuk-table__cell">Cash</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 87,000,828.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">26 Aug 2025</td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">EUROPEAN COMMERCE PARTNERS</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Birmingham Trade Bond</a></td>
+            <td class="govuk-table__cell">0041718546</td>
+            <td class="govuk-table__cell">Loan</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 35,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Unissued</span></td>
+            <td class="govuk-table__cell">20 Aug 2025</td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">ATLANTIC TRADING COMPANY</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Leeds Export Guarantee</a></td>
+            <td class="govuk-table__cell">0041718545</td>
+            <td class="govuk-table__cell">Bond</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 500,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">20 Aug 2025</td>
+          </tr>
+
+          <!-- Row 5 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">NORTHERN EXPORT SERVICES</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Sheffield Trade Credit</a></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">Contingent</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">GBP 100,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Unissued</span></td>
+            <td class="govuk-table__cell">20 Aug 2025</td>
+          </tr>
+
+          <!-- Row 6 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">SOUTHERN TRADE FINANCE</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Liverpool Export Bond</a></td>
+            <td class="govuk-table__cell">0041718544</td>
+            <td class="govuk-table__cell">Cash</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 8,000,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">15 Aug 2025</td>
+          </tr>
+
+          <!-- Row 7 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">WESTERN COMMERCE LTD</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Newcastle Trade Facility</a></td>
+            <td class="govuk-table__cell">0041718543</td>
+            <td class="govuk-table__cell">Loan</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 2,500,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">14 Aug 2025</td>
+          </tr>
+
+          <!-- Row 8 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">EASTERN TRADE PARTNERS</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Cardiff Export Credit</a></td>
+            <td class="govuk-table__cell">0041718542</td>
+            <td class="govuk-table__cell">Bond</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">USD 5,000,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">14 Aug 2025</td>
+          </tr>
+
+          <!-- Row 9 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">CENTRAL EXPORT FINANCE</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Edinburgh Trade Bond</a></td>
+            <td class="govuk-table__cell">0041718541</td>
+            <td class="govuk-table__cell">Contingent</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 1,200,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">14 Aug 2025</td>
+          </tr>
+
+          <!-- Row 10 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">LONDON TRADE SERVICES</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Glasgow Export Facility</a></td>
+            <td class="govuk-table__cell">0041718540</td>
+            <td class="govuk-table__cell">Cash</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 3,500,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">14 Aug 2025</td>
+          </tr>
+
+          <!-- Row 11 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">MANCHESTER EXPORT GROUP</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Bristol Trade Credit</a></td>
+            <td class="govuk-table__cell">0041718539</td>
+            <td class="govuk-table__cell">Loan</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 750,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">13 Aug 2025</td>
+          </tr>
+
+          <!-- Row 12 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">BIRMINGHAM TRADE FINANCE</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Nottingham Export Bond</a></td>
+            <td class="govuk-table__cell">0041718538</td>
+            <td class="govuk-table__cell">Bond</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">USD 2,800,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">13 Aug 2025</td>
+          </tr>
+
+          <!-- Row 13 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">LEEDS COMMERCE SOLUTIONS</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Derby Trade Facility</a></td>
+            <td class="govuk-table__cell">0041718537</td>
+            <td class="govuk-table__cell">Contingent</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 1,500,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">13 Aug 2025</td>
+          </tr>
+
+          <!-- Row 14 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">SHEFFIELD EXPORT PARTNERS</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Leicester Export Credit</a></td>
+            <td class="govuk-table__cell">0041718536</td>
+            <td class="govuk-table__cell">Cash</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 4,200,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">12 Aug 2025</td>
+          </tr>
+
+          <!-- Row 15 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">LIVERPOOL TRADE SERVICES</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Coventry Trade Bond</a></td>
+            <td class="govuk-table__cell">0041718535</td>
+            <td class="govuk-table__cell">Loan</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 2,100,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">11 Aug 2025</td>
+          </tr>
+
+          <!-- Row 16 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">NEWCASTLE EXPORT FINANCE</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Bradford Export Facility</a></td>
+            <td class="govuk-table__cell">0041718534</td>
+            <td class="govuk-table__cell">Bond</td>
+            <td class="govuk-table__cell">Manual Inclusion Application</td>
+            <td class="govuk-table__cell">EUR 3,800,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">11 Aug 2025</td>
+          </tr>
+
+          <!-- Row 17 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">CARDIFF TRADE GROUP</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Hull Trade Credit</a></td>
+            <td class="govuk-table__cell">0041718533</td>
+            <td class="govuk-table__cell">Contingent</td>
+            <td class="govuk-table__cell">Manual Inclusion Application</td>
+            <td class="govuk-table__cell">GBP 1,800,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Unissued</span></td>
+            <td class="govuk-table__cell">8 Aug 2025</td>
+          </tr>
+
+          <!-- Row 18 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">EDINBURGH COMMERCE LTD</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Plymouth Export Bond</a></td>
+            <td class="govuk-table__cell">0041718532</td>
+            <td class="govuk-table__cell">Cash</td>
+            <td class="govuk-table__cell">Manual Inclusion Application</td>
+            <td class="govuk-table__cell">USD 4,500,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Unissued</span></td>
+            <td class="govuk-table__cell">8 Aug 2025</td>
+          </tr>
+
+          <!-- Row 19 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">GLASGOW EXPORT SERVICES</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Stoke Trade Facility</a></td>
+            <td class="govuk-table__cell">0041718531</td>
+            <td class="govuk-table__cell">Loan</td>
+            <td class="govuk-table__cell">Manual Inclusion Notice</td>
+            <td class="govuk-table__cell">GBP 2,700,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">8 Aug 2025</td>
+          </tr>
+
+          <!-- Row 20 -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">ABERDEEN TRADE FINANCE</td>
+            <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">Wolverhampton Export Credit</a></td>
+            <td class="govuk-table__cell">0041718530</td>
+            <td class="govuk-table__cell">Bond</td>
+            <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+            <td class="govuk-table__cell">EUR 1,600,000.00</td>
+            <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Issued</span></td>
+            <td class="govuk-table__cell">8 Aug 2025</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <!-- MoJ Pagination Component -->
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+
+        <ul class="moj-pagination__list">
+          <li class="moj-pagination__item  moj-pagination__item--prev">
+            <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+      
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 1 of 5">1</a></li>
+      
+          <li class="moj-pagination__item moj-pagination__item--active" aria-label="Page 2 of 5" aria-current="page">2</li>
+      
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="" aria-label="Page 3 of 5">3</a></li>
+      
+          <li class="moj-pagination__item moj-pagination__item--dots">…</li>
+      
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="" aria-label="Page 5 of 5">5</a></li>
+      
+          <li class="moj-pagination__item  moj-pagination__item--next">
+            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>11</b> to <b>20</b> of <b>30</b> results</p>
+      </nav>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleFilter(button) {
+      const filterContainer = document.getElementById('showHideFilter');
+
+      if (filterContainer.style.display === 'none' || !filterContainer.style.display) {
+        filterContainer.style.display = 'block';
+        button.textContent = 'Hide filter';
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        filterContainer.style.display = 'none';
+        button.textContent = 'Show filter';
+        button.setAttribute('aria-expanded', 'false');
+      }
+    }
+  </script>
+
+    </div>
+  </div>
+
+{% endblock %}

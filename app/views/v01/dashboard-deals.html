@@ -1,0 +1,604 @@
+{% extends "layouts/dashboard.html" %}
+
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+Deals – {{ serviceName }}
+{% endblock %}
+
+
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="moj-page-header-actions">
+      <div class="moj-page-header-actions__title">
+        <h1 class="govuk-heading-xl">Applications and notices</h1>
+      </div>
+
+      <div class="moj-page-header-actions__actions">
+        <div class="moj-button-group moj-button-group--inline">
+
+          <button type="submit" class="govuk-button govuk-button--primary" data-module="govuk-button">
+            Create new
+          </button>
+
+          <!-- <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Share collection
+            </button> -->
+
+        </div>
+      </div>
+
+    </div>
+
+    <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" aria-current="page" href="dashboard-deals.html">Deals</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="dashboard-facilities.html">Facilities</a>
+        </li>
+
+
+      </ul>
+
+    </nav>
+
+
+    <!-- FILTER MODULE STARTS HERE -->
+    <div class="moj-filter-layout__filter" id="showHideFilter" style="display: none;">
+
+      <div class="moj-filter">
+
+        <div class="moj-filter__header">
+
+          <div class="moj-filter__header-title">
+            <h2 class="govuk-heading-m">Filter</h2>
+          </div>
+
+          <div class="moj-filter__header-action">
+
+          </div>
+
+        </div>
+
+        <div class="moj-filter__content">
+
+          <div class="moj-filter__selected">
+
+            <div class="moj-filter__selected-heading">
+
+              <div class="moj-filter__heading-title">
+                <h2 class="govuk-heading-m">Selected filters</h2>
+              </div>
+
+              <div class="moj-filter__heading-action">
+                <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+              </div>
+
+            </div>
+            <p> No filters selected</p>
+
+            <!--
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Product</h3>
+
+          <ul class="moj-filter-tags">
+
+            <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span>
+                EXIP</a></li>
+
+          </ul>
+
+          -->
+
+          </div>
+
+          <div class="moj-filter__options">
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Apply filters
+            </button>
+
+            <!-- Keyword Section -->
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="keywords">
+                Keyword
+              </label>
+              <input class="govuk-input" id="keywords" name="keywords" type="text"
+                placeholder="Enter keyword to search">
+
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes"
+                style="margin-top: 15px;">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="created-by-you" name="created-by-you" type="checkbox"
+                    value="true">
+                  <label class="govuk-label govuk-checkboxes__label" for="created-by-you">
+                    Created by you
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Section -->
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  Product
+                </legend>
+                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="product-bss-ewcs" name="product" type="checkbox"
+                      value="bss-ewcs">
+                    <label class="govuk-label govuk-checkboxes__label" for="product-bss-ewcs">
+                      BSS/EWCS
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="product-gef" name="product" type="checkbox" value="gef">
+                    <label class="govuk-label govuk-checkboxes__label" for="product-gef">
+                      GEF
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Notice Type Section -->
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  Notice type
+                </legend>
+                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="notice-auto-inclusion" name="notice-type" type="checkbox"
+                      value="automatic-inclusion-notice">
+                    <label class="govuk-label govuk-checkboxes__label" for="notice-auto-inclusion">
+                      Automatic Inclusion Notice
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="notice-manual-application" name="notice-type"
+                      type="checkbox" value="manual-inclusion-application">
+                    <label class="govuk-label govuk-checkboxes__label" for="notice-manual-application">
+                      Manual Inclusion Application
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="notice-manual-inclusion" name="notice-type"
+                      type="checkbox" value="manual-inclusion-notice">
+                    <label class="govuk-label govuk-checkboxes__label" for="notice-manual-inclusion">
+                      Manual Inclusion Notice
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Status Section -->
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  Status
+                </legend>
+                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-all" name="status" type="checkbox" value="all">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-all">
+                      All statuses
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-draft" name="status" type="checkbox"
+                      value="draft">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-draft">
+                      Draft
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-ready-checker" name="status" type="checkbox"
+                      value="ready-checker-approval">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-ready-checker">
+                      Ready for Checker's approval
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-further-input" name="status" type="checkbox"
+                      value="further-makers-input">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-further-input">
+                      Further Maker's input required
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-submitted" name="status" type="checkbox"
+                      value="submitted">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-submitted">
+                      Submitted
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-acknowledged" name="status" type="checkbox"
+                      value="acknowledged">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-acknowledged">
+                      Acknowledged
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-in-progress" name="status" type="checkbox"
+                      value="in-progress-ukef">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-in-progress">
+                      In progress by UKEF
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-accepted-conditions" name="status" type="checkbox"
+                      value="accepted-ukef-conditions">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-accepted-conditions">
+                      Accepted by UKEF (with conditions)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-accepted-no-conditions" name="status"
+                      type="checkbox" value="accepted-ukef-no-conditions">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-accepted-no-conditions">
+                      Accepted by UKEF (without conditions)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-rejected" name="status" type="checkbox"
+                      value="rejected-ukef">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-rejected">
+                      Rejected by UKEF
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-abandoned" name="status" type="checkbox"
+                      value="abandoned">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-abandoned">
+                      Abandoned
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="status-cancelled" name="status" type="checkbox"
+                      value="cancelled">
+                    <label class="govuk-label govuk-checkboxes__label" for="status-cancelled">
+                      Cancelled
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- FILTER MODULE ENDS HERE -->
+
+
+
+    <div class="moj-filter-layout__content">
+
+      <div class="moj-action-bar">
+
+
+        <div class="moj-action-bar">
+          <div class="moj-action-bar__filter">
+            <button class="govuk-button govuk-button--secondary" type="button" aria-haspopup="true"
+              aria-expanded="false" onclick="toggleFilter(this)">
+              Show filter
+            </button>
+          </div>
+
+          <div class="moj-button-menu" data-module="moj-button-menu" style="display: none;">
+
+            <button type="submit"
+              class="govuk-button moj-button-menu__item govuk-button--secondary govuk-button--secondary"
+              data-module="govuk-button">
+              Action 1
+            </button>
+
+            <button type="submit"
+              class="govuk-button moj-button-menu__item govuk-button--secondary govuk-button--secondary govuk-button--secondary"
+              data-module="govuk-button">
+              Action 2
+            </button>
+
+          </div>
+
+
+
+
+          <button type="submit" class="govuk-button" data-module="govuk-button" style="float: right; display: none;">
+            Start approval
+          </button>
+        </div>
+
+
+
+
+        <table class="govuk-table" data-module="moj-sortable-table">
+
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" aria-sort="ascending">
+                <button type="button" class="govuk-table__header-button">
+                  Exporter
+
+                </button>
+              </th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Bank ref</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Product</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Type</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Last updated</th>
+            </tr>
+          </thead>
+
+          <tbody class="govuk-table__body">
+            <!-- Row 1 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">BRITISH EXPORT FINANCE LTD</td>
+              <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">BEF-2025-001</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">26 Aug 2025</td>
+            </tr>
+
+            <!-- Row 2 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">GLOBAL TRADE SOLUTIONS PLC</td>
+              <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">GTS-REF-0892</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">26 Aug 2025</td>
+            </tr>
+
+            <!-- Row 3 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">INTERNATIONAL COMMERCE GROUP</td>
+              <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">ICG-2025-156</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">26 Aug 2025</td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">EUROPEAN EXPORT PARTNERS</td>
+              <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">EEP-FAC-0783</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">20 Aug 2025</td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">ATLANTIC TRADING COMPANY</td>
+              <td class="govuk-table__cell"><a href="application-details/app-details.html" class="govuk-link">ATC-REF-2341</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">20 Aug 2025</td>
+            </tr>
+
+            <!-- Row 6 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">NORTHERN EXPORT SERVICES</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">NES-2025-892</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Draft</span></td>
+              <td class="govuk-table__cell">20 Aug 2025</td>
+            </tr>
+
+            <!-- Row 7 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">SOUTHERN TRADE FINANCE</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">STF-FAC-5678</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">15 Aug 2025</td>
+            </tr>
+
+            <!-- Row 8 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">WESTERN COMMERCE LTD</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">WCL-REF-3456</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">14 Aug 2025</td>
+            </tr>
+
+            <!-- Row 9 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">EASTERN TRADE PARTNERS</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">ETP-2025-789</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">14 Aug 2025</td>
+            </tr>
+
+            <!-- Row 10 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">CENTRAL EXPORT FINANCE</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">CEF-FAC-1234</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">14 Aug 2025</td>
+            </tr>
+
+            <!-- Row 11 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">LONDON TRADE SERVICES</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">LTS-REF-9876</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">14 Aug 2025</td>
+            </tr>
+
+            <!-- Row 12 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">MANCHESTER EXPORT GROUP</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">MEG-2025-432</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">13 Aug 2025</td>
+            </tr>
+
+            <!-- Row 13 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">BIRMINGHAM TRADE FINANCE</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">BTF-FAC-8765</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">13 Aug 2025</td>
+            </tr>
+
+            <!-- Row 14 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">LEEDS COMMERCE SOLUTIONS</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">LCS-REF-5432</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--orange">Pending cancellation</span></td>
+              <td class="govuk-table__cell">13 Aug 2025</td>
+            </tr>
+
+            <!-- Row 15 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">SHEFFIELD EXPORT PARTNERS</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">SEP-2025-210</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">12 Aug 2025</td>
+            </tr>
+
+            <!-- Row 16 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">LIVERPOOL TRADE SERVICES</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">LTS-FAC-6543</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Automatic Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">11 Aug 2025</td>
+            </tr>
+
+            <!-- Row 17 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">NEWCASTLE EXPORT FINANCE</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">NEF-REF-1098</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Manual Inclusion Application</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">In progress by UKEF</span></td>
+              <td class="govuk-table__cell">11 Aug 2025</td>
+            </tr>
+
+            <!-- Row 18 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">CARDIFF TRADE GROUP</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">CTG-2025-765</a></td>
+              <td class="govuk-table__cell">BSS/EWCS</td>
+              <td class="govuk-table__cell">Manual Inclusion Application</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--yellow">Further Maker's input
+                  required</span></td>
+              <td class="govuk-table__cell">8 Aug 2025</td>
+            </tr>
+
+            <!-- Row 19 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">EDINBURGH COMMERCE LTD</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">ECL-FAC-3210</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Manual Inclusion Application</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--blue">Submitted</span></td>
+              <td class="govuk-table__cell">8 Aug 2025</td>
+            </tr>
+
+            <!-- Row 20 -->
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">GLASGOW EXPORT SERVICES</td>
+              <td class="govuk-table__cell"><a href="#" class="govuk-link">GES-REF-8765</a></td>
+              <td class="govuk-table__cell">GEF</td>
+              <td class="govuk-table__cell">Manual Inclusion Notice</td>
+              <td class="govuk-table__cell"><span class="govuk-tag govuk-tag--green">Acknowledged</span></td>
+              <td class="govuk-table__cell">8 Aug 2025</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <!-- MoJ Pagination Component -->
+        <nav class="moj-pagination" aria-label="Pagination navigation">
+
+          <ul class="moj-pagination__list">
+            <li class="moj-pagination__item  moj-pagination__item--prev">
+              <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> page</span></a>
+            </li>
+
+            <li class="moj-pagination__item"><a class="moj-pagination__link" href="#"
+                aria-label="Page 1 of 5">1</a></li>
+
+            <li class="moj-pagination__item moj-pagination__item--active" aria-label="Page 2 of 5" aria-current="page">2
+            </li>
+
+            <li class="moj-pagination__item"><a class="moj-pagination__link" href="#"
+                aria-label="Page 3 of 5">3</a></li>
+
+            <li class="moj-pagination__item moj-pagination__item--dots">…</li>
+
+            <li class="moj-pagination__item"><a class="moj-pagination__link" href="#"
+                aria-label="Page 5 of 5">5</a></li>
+
+            <li class="moj-pagination__item  moj-pagination__item--next">
+              <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
+            </li>
+          </ul>
+          <p class="moj-pagination__results">Showing <b>11</b> to <b>20</b> of <b>30</b> results</p>
+        </nav>
+
+      </div>
+    </div>
+
+    <script>
+      function toggleFilter(button) {
+        const filterContainer = document.getElementById('showHideFilter');
+
+        if (filterContainer.style.display === 'none' || !filterContainer.style.display) {
+          filterContainer.style.display = 'block';
+          button.textContent = 'Hide filter';
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          filterContainer.style.display = 'none';
+          button.textContent = 'Show filter';
+          button.setAttribute('aria-expanded', 'false');
+        }
+      }
+    </script>
+
+    </div>
+  </div>
+
+{% endblock %}
