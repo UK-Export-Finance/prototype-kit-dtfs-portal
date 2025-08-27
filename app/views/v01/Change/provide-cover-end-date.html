@@ -2,7 +2,7 @@
 {% set activePage = "dashboard" %}
 
 {% block pageTitle %}
-  Facility end date - Get a guarantee for export finance - GOV.UK
+  New cover end date - Get a guarantee for export finance - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -38,18 +38,13 @@
       {% endif %}
       
       <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
-      <h1 class="govuk-heading-l">Facility end date</h1>
+      <h1 class="govuk-heading-l">New cover end date</h1>
 
-      <p class="govuk-body">Enter the facility end date for this facility</p>
 
       <form action="" method="post">
         <div class="govuk-form-group {% if validationErrors and errors['new-cover-end-date'] %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h2 class="govuk-fieldset__heading govuk-visually-hidden">
-                Enter the facility end date
-              </h2>
-            </legend>
+         
             <div id="date-hint" class="govuk-hint">
               For example, 31 8 2026
             </div>
@@ -66,7 +61,7 @@
                   <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-day" name="new-cover-end-date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ facilityEndDate.day if facilityEndDate else '' }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-day" name="new-cover-end-date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ coverEndDate.day if coverEndDate else '' }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -74,7 +69,7 @@
                   <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-month" name="new-cover-end-date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ facilityEndDate.month if facilityEndDate else '' }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-month" name="new-cover-end-date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ coverEndDate.month if coverEndDate else '' }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -82,7 +77,7 @@
                   <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-year" name="new-cover-end-date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ facilityEndDate.year if facilityEndDate else '' }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-year" name="new-cover-end-date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ coverEndDate.year if coverEndDate else '' }}">
                 </div>
               </div>
             </div>
@@ -96,17 +91,6 @@
           <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
       </form>
-
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            What is a facility end date
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <p class="govuk-body">The facility end date is the deadline for a committed loan to be repaid at which point the contract will be terminated.</p>
-        </div>
-      </details>
 
     </div>
   </div>

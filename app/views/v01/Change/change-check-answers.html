@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
       <h1 class="govuk-heading-l">Check your answers before submitting the amendment request</h1>
 
       <h2 class="govuk-heading-m">Amendments</h2>
@@ -24,150 +24,191 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key" style="width: 50%;">Changes</dt>
-          <dd class="govuk-summary-list__value">Cover end date and <br />Facility end date<br /> Facility value</dd>
+          <dd class="govuk-summary-list__value">
+            {% if changeOptions and changeOptions.includes('cover-end-date') %}Cover end date{% endif %}
+            {% if changeOptions and changeOptions.includes('facility-value') %}{% if changeOptions and changeOptions.includes('cover-end-date') %}<br />{% endif %}Facility value{% endif %}
+            {% if hasFacilityEndDate == 'yes' %}{% if changeOptions and (changeOptions.includes('cover-end-date') or changeOptions.includes('facility-value')) %}<br />{% endif %}Facility end date{% endif %}
+            {% if hasFacilityEndDate == 'no' %}{% if changeOptions and (changeOptions.includes('cover-end-date') or changeOptions.includes('facility-value')) %}<br />{% endif %}Bank review date{% endif %}
+          </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-cover-end-date">
-              Change<span class="govuk-visually-hidden"> new cover end date</span>
+            <a class="govuk-link" href="/v01/Change/start">
+              Change<span class="govuk-visually-hidden"> changes</span>
             </a>
           </dd>
         </div>
 
 
 
+        {% if changeOptions and changeOptions.includes('cover-end-date') and coverEndDate %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key" style="width: 50%;">New cover end date</dt>
-          <dd class="govuk-summary-list__value">24 December 2029</dd>
+          <dd class="govuk-summary-list__value">{{ coverEndDate.day }} {{ coverEndDate.month }} {{ coverEndDate.year }}</dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-cover-end-date">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> new cover end date</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if hasFacilityEndDate == 'yes' and facilityEndDate %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">New facility end date</dt>
-          <dd class="govuk-summary-list__value">12 September 2027</dd>
+          <dd class="govuk-summary-list__value">{{ facilityEndDate.day }} {{ facilityEndDate.month }} {{ facilityEndDate.year }}</dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-facility-end-date">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> new facility end date</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if hasFacilityEndDate == 'no' and bankReviewDate %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">New bank review date</dt>
+          <dd class="govuk-summary-list__value">{{ bankReviewDate.day }} {{ bankReviewDate.month }} {{ bankReviewDate.year }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="javascript:window.history.back()">
+              Change<span class="govuk-visually-hidden"> new bank review date</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
+        {% if changeOptions and changeOptions.includes('facility-value') and facilityValue %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">New facility value</dt>
-          <dd class="govuk-summary-list__value">GBP 500,000.00</dd>
+          <dd class="govuk-summary-list__value">{{ facilityValue }}</dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-facility-value">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> new facility value</span>
             </a>
           </dd>
         </div>
+        {% endif %}
       </dl>
+
 
       <h2 class="govuk-heading-m">Eligibility criteria</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility1 %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key" style="width: 50%;">1. The Facility is not an Affected Facility</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility1 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 1</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility2 %}
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">2. Neither the Exporter, not its UK Parent Obligor is an Affected Person</dt>
+          <dt class="govuk-summary-list__key">2. Neither the Exporter, nor its UK Parent Obligor is an Affected Person</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility2 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 2</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility3 %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">3. The Cover Period of the Facility is within the Facility Maximum Cover Period</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility3 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 3</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility4 %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">4. The Covered Facility Limit (converted for this purpose into the Master Guarantee Base Currency) of the Facility is not more than the lesser of (i) the Available Master Guarantee Limit; and the Available Obligor(s) Limit</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility4 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 4</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility5 %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">5. The Bank has completed its Bank Due Diligence to its satisfaction in accordance with its policies and procedures without having to escalate any issue raised during its Bank Due Diligence internally to any Relevant Person for approval as part of its usual Bank Due Diligence</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility5 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 5</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility6 %}
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">6. The Bank is the sole and legal beneficial owner of, and has good title to, the Facility and any Utilisation thereunder.</dt>
+          <dt class="govuk-summary-list__key">6. The Cover Limit of the Facility has not exceeded a cumulative total of 25% of the UK Parent Obligor's consolidated net assets at the date of the Facility unless the reduction of the Cover Limit is due to other changes that occurred as a result of the passage of time and the State has notified the SFS of the amendment of the Facility</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility6 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 6</span>
             </a>
           </dd>
         </div>
+        {% endif %}
+        {% if eligibilityCriteria and eligibilityCriteria.eligibility7 %}
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">7. The Bank's right, title and interest in and to the Facility and any Utilisation thereunder (including any indebtedness, obligation of liability of each Obligor) is free and clear of any Security or Quasi-Security (other than Permitted Security)</dt>
+          <dt class="govuk-summary-list__key">7. The Exporter has not provided the Bank with any new information that has not been previously made available to the Bank</dt>
           <dd class="govuk-summary-list__value">
-            <span class="govuk-tag govuk-tag--green">True</span>
+            <span class="govuk-tag govuk-tag--green">{{ eligibilityCriteria.eligibility7 | title }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> eligibility criterion 7</span>
             </a>
           </dd>
         </div>
+        {% endif %}
       </dl>
 
-      <h2 class="govuk-heading-m">Date amendment effective from</h2>
+      {% if amendmentDate %}
+      <h2 class="govuk-heading-m">Amendment date</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key" style="width: 50%;">Date</dt>
-          <dd class="govuk-summary-list__value">12 September 2025</dd>
+          <dt class="govuk-summary-list__key" style="width: 50%;">Amendment effective date</dt>
+          <dd class="govuk-summary-list__value">{{ amendmentDate.day }} {{ amendmentDate.month }} {{ amendmentDate.year }}</dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/v01/Change/change-amendment-date">
+            <a class="govuk-link" href="javascript:window.history.back()">
               Change<span class="govuk-visually-hidden"> amendment effective date</span>
             </a>
           </dd>
         </div>
       </dl>
+      {% endif %}
 
-      <h2 class="govuk-heading-m">Now submit your amendment request</h2>
-      <p class="govuk-body">By submitting this amendment request you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
 
-      <form action="/v01/Change/change-confirmation" method="post" novalidate>
-        <input type="hidden" name="answers-checked" value="true">
+     
+      
+
+      <form action="" method="post" novalidate>
+        
         
         {{ govukButton({
           text: "Submit to be checked at your bank"
         }) }}
         
-        <p><a href="/v01/Change/change-facility-start" class="govuk-link">Cancel</a></p>
+        <p><a href="javascript:window.history.back()" class="govuk-link">Cancel</a></p>
       </form>
 
     </div>

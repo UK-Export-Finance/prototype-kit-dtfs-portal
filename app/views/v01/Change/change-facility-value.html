@@ -8,32 +8,61 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/v01/Change/change-cover-end-date"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      
+      
+      {% if validationErrors %}
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errorMessages %}
+              <li>
+                <a href="#{{ error.field }}">{{ error.message }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
       <h1 class="govuk-heading-l">New facility value</h1>
 
-      <form action="/v01/Change/change-facility-end-date" method="post">
-        <div class="govuk-form-group">
+      <p class="govuk-body">Enter the new facility value for this facility</p>
+
+      <form action="" method="post">
+        <div class="govuk-form-group {% if validationErrors and errors['new-facility-value'] %}govuk-form-group--error{% endif %}">
+          <label class="govuk-label" for="new-facility-value">
+            New facility value
+          </label>
           
-          <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
-            <input class="govuk-input govuk-input--width-10" id="new-facility-value" name="new-facility-value" type="text" spellcheck="false" aria-describedby="new-facility-value-hint">
-          </div>
-       
+          {% if validationErrors and errors['new-facility-value'] %}
+          <p id="new-facility-value-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ errors['new-facility-value'] }}
+          </p>
+          {% endif %}
+          
+          <input class="govuk-input govuk-input--width-10 {% if validationErrors and errors['new-facility-value'] %}govuk-input--error{% endif %}" id="new-facility-value" name="new-facility-value" type="text" value="{{ facilityValue if facilityValue else '' }}">
         </div>
 
         <div class="govuk-button-group govuk-!-margin-top-9">
           {{ govukButton({
             text: "Continue"
           }) }}
-          <a class="govuk-link" href="/v01/Change/change-cover-end-date">Cancel</a>
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
       </form>
 

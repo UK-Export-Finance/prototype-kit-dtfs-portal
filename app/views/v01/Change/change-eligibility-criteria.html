@@ -8,18 +8,42 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/v01/Change/change-facility-end-date"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      
+      
+      {% if validationErrors %}
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errorMessages %}
+              <li>
+                <a href="#{{ error.field }}">{{ error.message }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      
+
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
       <h1 class="govuk-heading-l">Eligibility</h1>
 
-      <form action="/v01/Change/change-amendment-date" method="post">
+      <p class="govuk-body">Please confirm all eligibility criteria for this facility</p>
+
+      <form action="" method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -28,24 +52,30 @@
             <div class="govuk-radios" data-module="govuk-radios">
        
 
-              <div class="govuk-form-group" id="ec-1">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-1'] %}govuk-form-group--error{% endif %}" id="eligibility-1">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-1-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                     <label class="govuk-label">
                       1. The Facility is not an Affected Facility
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-1'] %}
+                  <p id="eligibility-1-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-1'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-1" name="ec-1" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-1">
+                      <input class="govuk-radios__input" id="eligibility-1-yes" name="eligibility-1" type="radio" value="yes" {% if eligibilityCriteria.eligibility1 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-1-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-1-2" name="ec-1" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-1-2">
+                      <input class="govuk-radios__input" id="eligibility-1-no" name="eligibility-1" type="radio" value="no" {% if eligibilityCriteria.eligibility1 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-1-no">
                        False
                       </label>
                     </div>
@@ -53,24 +83,30 @@
                 </fieldset>
               </div>
 
-              <div class="govuk-form-group" id="ec-2">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-2'] %}govuk-form-group--error{% endif %}" id="eligibility-2">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-2-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                       2. Neither the Exporter, nor its UK Parent Obligor is an Affected Person
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-2'] %}
+                  <p id="eligibility-2-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-2'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-2" name="ec-2" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-2">
+                      <input class="govuk-radios__input" id="eligibility-2-yes" name="eligibility-2" type="radio" value="yes" {% if eligibilityCriteria.eligibility2 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-2-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-2-2" name="ec-2" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-2-2">
+                      <input class="govuk-radios__input" id="eligibility-2-no" name="eligibility-2" type="radio" value="no" {% if eligibilityCriteria.eligibility2 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-2-no">
                        False
                       </label>
                     </div>
@@ -78,24 +114,30 @@
                 </fieldset>
               </div>
 
-              <div class="govuk-form-group" id="ec-3">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-3'] %}govuk-form-group--error{% endif %}" id="eligibility-3">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-3-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                         3. The Cover Period of the Facility is within the Facility Maximum Cover Period
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-3'] %}
+                  <p id="eligibility-3-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-3'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-3" name="ec-3" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-3">
+                      <input class="govuk-radios__input" id="eligibility-3-yes" name="eligibility-3" type="radio" value="yes" {% if eligibilityCriteria.eligibility3 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-3-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-3-2" name="ec-3" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-3-2">
+                      <input class="govuk-radios__input" id="eligibility-3-no" name="eligibility-3" type="radio" value="no" {% if eligibilityCriteria.eligibility3 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-3-no">
                        False
                       </label>
                     </div>
@@ -104,24 +146,30 @@
               </div>
 
 
-              <div class="govuk-form-group" id="ec-4">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-4'] %}govuk-form-group--error{% endif %}" id="eligibility-4">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-4-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                         4. The Covered Facility Limit (converted for this purpose into the Master Guarantee Base Currency) of the Facility is not more than the lesser of (i) the Available Master Guarantee Limit; and the Available Obligor(s) Limit
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-4'] %}
+                  <p id="eligibility-4-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-4'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-4" name="ec-4" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-4">
+                      <input class="govuk-radios__input" id="eligibility-4-yes" name="eligibility-4" type="radio" value="yes" {% if eligibilityCriteria.eligibility4 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-4-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-4-2" name="ec-4" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-4-2">
+                      <input class="govuk-radios__input" id="eligibility-4-no" name="eligibility-4" type="radio" value="no" {% if eligibilityCriteria.eligibility4 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-4-no">
                        False
                       </label>
                     </div>
@@ -131,24 +179,30 @@
 
 
 
-              <div class="govuk-form-group" id="ec-5">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-5'] %}govuk-form-group--error{% endif %}" id="eligibility-5">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-5-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                         5. The Bank has completed its Bank Due Diligence to its satisfaction in accordance with its policies and procedures without having to escalate any issue raised during its Bank Due Diligence internally to any Relevant Person for approval as part of its usual Bank Due Diligence
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-5'] %}
+                  <p id="eligibility-5-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-5'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-5" name="ec-5" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-5">
+                      <input class="govuk-radios__input" id="eligibility-5-yes" name="eligibility-5" type="radio" value="yes" {% if eligibilityCriteria.eligibility5 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-5-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-5-2" name="ec-5" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-5-2">
+                      <input class="govuk-radios__input" id="eligibility-5-no" name="eligibility-5" type="radio" value="no" {% if eligibilityCriteria.eligibility5 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-5-no">
                        False
                       </label>
                     </div>
@@ -156,24 +210,30 @@
                 </fieldset>
               </div>
 
-              <div class="govuk-form-group" id="ec-6">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-6'] %}govuk-form-group--error{% endif %}" id="eligibility-6">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-6-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                         6. The Cover Limit of the Facility has not exceeded a cumulative total of 25% of the UK Parent Obligor's consolidated net assets at the date of the Facility unless the reduction of the Cover Limit is due to other changes that occurred as a result of the passage of time and the State has notified the SFS of the amendment of the Facility
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-6'] %}
+                  <p id="eligibility-6-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-6'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-6" name="ec-6" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-6">
+                      <input class="govuk-radios__input" id="eligibility-6-yes" name="eligibility-6" type="radio" value="yes" {% if eligibilityCriteria.eligibility6 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-6-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-6-2" name="ec-6" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-6-2">
+                      <input class="govuk-radios__input" id="eligibility-6-no" name="eligibility-6" type="radio" value="no" {% if eligibilityCriteria.eligibility6 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-6-no">
                        False
                       </label>
                     </div>
@@ -182,24 +242,30 @@
               </div>
 
 
-              <div class="govuk-form-group" id="ec-7">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+              <div class="govuk-form-group {% if validationErrors and errors['eligibility-7'] %}govuk-form-group--error{% endif %}" id="eligibility-7">
+                <fieldset class="govuk-fieldset" aria-describedby="eligibility-7-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
                         7. The Exporter has not provided the Bank with any new information that has not been previously made available to the Bank
                     </label>
                   </legend>
+                  
+                  {% if validationErrors and errors['eligibility-7'] %}
+                  <p id="eligibility-7-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-7'] }}
+                  </p>
+                  {% endif %}
                  
                   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-7" name="ec-7" type="radio" value="yes">
-                      <label class="govuk-label govuk-radios__label" for="ec-7">
+                      <input class="govuk-radios__input" id="eligibility-7-yes" name="eligibility-7" type="radio" value="yes" {% if eligibilityCriteria.eligibility7 === 'yes' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-7-yes">
                         True 
                       </label>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ec-7-2" name="ec-7" type="radio" value="no">
-                      <label class="govuk-label govuk-radios__label" for="ec-7-2">
+                      <input class="govuk-radios__input" id="eligibility-7-no" name="eligibility-7" type="radio" value="no" {% if eligibilityCriteria.eligibility7 === 'no' %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="eligibility-7-no">
                        False
                       </label>
                     </div>
@@ -216,7 +282,7 @@
           {{ govukButton({
             text: "Continue"
           }) }}
-          <a class="govuk-link" href="/v01/Change/change-facility-end-date">Cancel</a>
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
       </form>
 

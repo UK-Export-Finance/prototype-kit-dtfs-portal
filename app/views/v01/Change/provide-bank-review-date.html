@@ -2,13 +2,13 @@
 {% set activePage = "dashboard" %}
 
 {% block pageTitle %}
-  New cover end date - Get a guarantee for export finance - GOV.UK
+  Bank review date - Get a guarantee for export finance - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/v01/Change/change-facility-start"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
@@ -16,11 +16,34 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      
+      
+      {% if validationErrors %}
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errorMessages %}
+              <li>
+                <a href="#{{ error.field }}">{{ error.message }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
       <h1 class="govuk-heading-l">Bank review date</h1>
 
-      <form action="/v01/Change/change-facility-end-date" method="post">
-        <div class="govuk-form-group">
+      <p class="govuk-body">Enter the bank review date for this facility</p>
+
+      <form action="" method="post">
+        <div class="govuk-form-group {% if validationErrors and errors['new-cover-end-date'] %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading govuk-visually-hidden">
@@ -30,13 +53,20 @@
             <div id="date-hint" class="govuk-hint">
               For example, 31 8 2026
             </div>
+            
+            {% if validationErrors and errors['new-cover-end-date'] %}
+            <p id="new-cover-end-date-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ errors['new-cover-end-date'] }}
+            </p>
+            {% endif %}
+            
             <div class="govuk-date-input" id="new-cover-end-date">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="new-cover-end-date-day" name="new-cover-end-date-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-day" name="new-cover-end-date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ bankReviewDate.day if bankReviewDate else '' }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -44,15 +74,15 @@
                   <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="new-cover-end-date-month" name="new-cover-end-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-month" name="new-cover-end-date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ bankReviewDate.month if bankReviewDate else '' }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="new-cover-end-date-year">
+                  <label class="govuk-date-input__label" for="new-cover-end-date-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="new-cover-end-date-year" name="new-cover-end-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 {% if validationErrors and errors['new-cover-end-date'] %}govuk-input--error{% endif %}" id="new-cover-end-date-year" name="new-cover-end-date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ bankReviewDate.year if bankReviewDate else '' }}">
                 </div>
               </div>
             </div>
@@ -63,7 +93,7 @@
           {{ govukButton({
             text: "Continue"
           }) }}
-          <a class="govuk-link" href="/v01/Change/change-facility-start">Cancel</a>
+          <a class="govuk-link" href="/v01/Change/start">Cancel</a>
         </div>
       </form>
 

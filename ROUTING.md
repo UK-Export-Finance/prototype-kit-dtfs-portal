@@ -23,12 +23,12 @@ The Change folder contains a 7-page workflow for making amendments to facilities
 
 #### **Page Flow: 0 → 1 → 2 → 3 → 4 → 5 → 6**
 
-1. **`/:version/Change/change-facility-start`** (Page 0)
+1. **`/:version/Change/start`** (Page 0)
    - Initial selection page with checkboxes for what needs to be changed
    - Validates: At least one option must be selected
    - POST: Redirects to next page based on selection
 
-2. **`/:version/Change/change-cover-end-date`** (Page 1)
+2. **`/:version/Change/provide-cover-end-date`** (Page 1)
    - Date input for new cover end date
    - Validates: Day, month, and year must be provided
    - POST: Redirects to facility value page
@@ -79,17 +79,17 @@ The Change folder contains a 7-page workflow for making amendments to facilities
 - Facility Name cells → `/{version}/application-details/app-details`
 
 #### Change Process Links
-- Start amendment process → `/{version}/Change/change-facility-start`
+- Start amendment process → `/{version}/Change/start`
 - Each page links to the next in sequence
 - Change links on check answers page return to respective input pages
 
 ## URL Structure
 
 All URLs use dynamic version parameters:
-- **v01**: `/v01/dashboard-deals`, `/v01/Change/change-facility-start`
-- **v02**: `/v02/dashboard-deals`, `/v02/Change/change-facility-start`
-- **v03**: `/v03/dashboard-deals`, `/v03/Change/change-facility-start`
-- **Any version**: `/{version}/dashboard-deals`, `/{version}/Change/change-facility-start`
+- **v01**: `/v01/dashboard-deals`, `/v01/Change/start`
+- **v02**: `/v02/dashboard-deals`, `/v02/Change/start`
+- **v03**: `/v03/dashboard-deals`, `/v03/Change/start`
+- **Any version**: `/{version}/dashboard-deals`, `/{version}/Change/start`
 
 ## Version Parameter
 
@@ -136,15 +136,15 @@ The root route `/` automatically redirects to `/v01/dashboard-deals` (default ve
 ### Creating v02 folder:
 1. Create `app/views/v02/` directory
 2. Copy your v01 files to v02
-3. Routes automatically work: `/v02/dashboard-deals`, `/v02/Change/change-facility-start`, etc.
+3. Routes automatically work: `/v02/dashboard-deals`, `/v02/Change/start`, etc.
 
 ### Creating v03 folder:
 1. Create `app/views/v03/` directory
 2. Copy your v01 files to v03
-3. Routes automatically work: `/v03/dashboard-deals`, `/v03/Change/change-facility-start`, etc.
+3. Routes automatically work: `/v03/dashboard-deals`, `/v03/Change/start`, etc.
 
 ### Amendment Process Flow:
-1. Start at `/v01/Change/change-facility-start`
+1. Start at `/v01/Change/start`
 2. Follow sequential navigation through all 7 pages
 3. Complete with confirmation at `/v01/Change/change-confirmation`
 

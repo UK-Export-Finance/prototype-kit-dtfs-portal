@@ -8,7 +8,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/v01/Change/change-facility-value"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
@@ -16,28 +16,56 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+       
+      
+      {% if validationErrors %}
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errorMessages %}
+              <li>
+                <a href="#{{ error.field }}">{{ error.message }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
       <h1 class="govuk-heading-l">Do you have a facility end date?</h1>
 
       <p class="govuk-body">You have to provide UKEF either a facility end date or a bank review date for this GEF cash facility as per an updated version of the GEF user guide.</p>
 
-      <form action="/v01/Change/change-eligibility-criteria" method="post">
-        <div class="govuk-form-group">
+      <form action="" method="post">
+        <div class="govuk-form-group {% if validationErrors and errors['facility-end-date'] %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading govuk-visually-hidden">
                 Do you have a facility end date?
               </h2>
             </legend>
+            
+            {% if validationErrors and errors['facility-end-date'] %}
+            <p id="facility-end-date-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ errors['facility-end-date'] }}
+            </p>
+            {% endif %}
+            
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="facility-end-date-yes" name="facility-end-date" type="radio" value="yes">
+                <input class="govuk-radios__input" id="facility-end-date-yes" name="facility-end-date" type="radio" value="yes" {% if hasFacilityEndDate === 'yes' %}checked{% endif %}>
                 <label class="govuk-label govuk-radios__label" for="facility-end-date-yes">
                   Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="facility-end-date-no" name="facility-end-date" type="radio" value="no">
+                <input class="govuk-radios__input" id="facility-end-date-no" name="facility-end-date" type="radio" value="no" {% if hasFacilityEndDate === 'no' %}checked{% endif %}>
                 <label class="govuk-label govuk-radios__label" for="facility-end-date-no">
                   No
                 </label>
@@ -50,7 +78,7 @@
           {{ govukButton({
             text: "Continue"
           }) }}
-          <a class="govuk-link" href="/v01/Change/change-facility-value">Cancel</a>
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
       </form>
 
