@@ -88,12 +88,12 @@ router.post('/:version/Change/start', (req, res) => {
     req.session.changeOptions = changeOptions
     
     // Navigate based on selection logic
-    // Always go through cover end date first if selected, or directly to facility end date question if only facility value is selected
     if (changeOptions.includes('cover-end-date')) {
+      // If cover end date is selected, go to provide cover end date first
       res.redirect(`/${version}/Change/provide-cover-end-date`)
     } else if (changeOptions.includes('facility-value')) {
-      // If only facility value is selected, go directly to facility end date question
-      res.redirect(`/${version}/Change/change-facility-end-date`)
+      // If only facility value is selected, go directly to change facility value
+      res.redirect(`/${version}/Change/change-facility-value`)
     } else {
       // Fallback - should not happen with current checkbox options
       res.redirect(`/${version}/Change/provide-cover-end-date`)
@@ -183,8 +183,14 @@ router.post('/:version/Change/change-facility-value', (req, res) => {
     // Store the facility value in session
     req.session.facilityValue = facilityValue
     
-    // Navigate to eligibility criteria (since we've already captured facility end date/bank review date)
-    res.redirect(`/${version}/Change/change-eligibility-criteria`)
+    // Check if user came from cover end date flow (has facility end date question)
+    if (req.session.hasFacilityEndDate !== undefined) {
+      // User went through facility end date question, go to eligibility criteria
+      res.redirect(`/${version}/Change/change-eligibility-criteria`)
+    } else {
+      // User came directly from start page (only facility value selected), go to facility end date question
+      res.redirect(`/${version}/Change/change-facility-end-date`)
+    }
   }
 })
 
