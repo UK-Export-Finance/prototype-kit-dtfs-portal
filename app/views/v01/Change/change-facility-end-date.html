@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  Do you have a facility end date? - Get a guarantee for export finance - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v01/Change/change-facility-value"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      <h1 class="govuk-heading-l">Do you have a facility end date?</h1>
+
+      <p class="govuk-body">You have to provide UKEF either a facility end date or a bank review date for this GEF cash facility as per an updated version of the GEF user guide.</p>
+
+      <form action="/v01/Change/change-eligibility-criteria" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                Do you have a facility end date?
+              </h2>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="facility-end-date-yes" name="facility-end-date" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="facility-end-date-yes">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="facility-end-date-no" name="facility-end-date" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="facility-end-date-no">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+          <a class="govuk-link" href="/v01/Change/change-facility-value">Cancel</a>
+        </div>
+      </form>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What is a facility end date
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">The facility end date is the deadline for a committed loan to be repaid at which point the contract will be terminated.</p>
+        </div>
+      </details>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What is a bank review date
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">The bank review date is when you decide in accordance with your usual policies and procedures for such facilities whether to continue or terminate the facility based on the borrower's needs and circumstances.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+{% endblock %}

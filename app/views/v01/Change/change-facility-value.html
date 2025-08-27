@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  New facility value - Get a guarantee for export finance - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v01/Change/change-cover-end-date"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      <h1 class="govuk-heading-l">New facility value</h1>
+
+      <form action="/v01/Change/change-facility-end-date" method="post">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="new-facility-value">
+            Enter the new facility value
+          </label>
+          <div class="govuk-input__wrapper">
+            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <input class="govuk-input govuk-input--width-10" id="new-facility-value" name="new-facility-value" type="text" spellcheck="false" aria-describedby="new-facility-value-hint">
+          </div>
+          <div id="new-facility-value-hint" class="govuk-hint">
+            For example, 500,000
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+          <a class="govuk-link" href="/v01/Change/change-cover-end-date">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

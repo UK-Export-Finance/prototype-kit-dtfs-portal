@@ -1,0 +1,162 @@
+{% extends "layouts/main.html" %}
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  Check your answers before submitting the amendment request - Get a guarantee for export finance - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v01/Change/change-amendment-date"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      <h1 class="govuk-heading-l">Check your answers before submitting the amendment request</h1>
+
+      <h2 class="govuk-heading-m">Amendments</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">New cover end date</dt>
+          <dd class="govuk-summary-list__value">24 December 2029</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-cover-end-date">
+              Change<span class="govuk-visually-hidden"> new cover end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">New facility end date</dt>
+          <dd class="govuk-summary-list__value">12 September 2027</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-facility-end-date">
+              Change<span class="govuk-visually-hidden"> new facility end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">New facility value</dt>
+          <dd class="govuk-summary-list__value">GBP 500,000.00</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-facility-value">
+              Change<span class="govuk-visually-hidden"> new facility value</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Eligibility criteria</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">1. The Facility is not an Affected Facility</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 1</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">2. Neither the Exporter, not its UK Parent Obligor is an Affected Person</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 2</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">3. The Cover Period of the Facility is within the Facility Maximum Cover Period</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 3</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">4. The Covered Facility Limit (converted for this purpose into the Master Guarantee Base Currency) of the Facility is not more than the lesser of (i) the Available Master Guarantee Limit; and the Available Obligor(s) Limit</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 4</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">5. The Bank has completed its Bank Due Diligence to its satisfaction in accordance with its policies and procedures without having to escalate any issue raised during its Bank Due Diligence internally to any Relevant Person for approval as part of its usual Bank Due Diligence</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 5</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">6. The Bank is the sole and legal beneficial owner of, and has good title to, the Facility and any Utilisation thereunder.</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 6</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">7. The Bank's right, title and interest in and to the Facility and any Utilisation thereunder (including any indebtedness, obligation of liability of each Obligor) is free and clear of any Security or Quasi-Security (other than Permitted Security)</dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-tag govuk-tag--green">True</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-eligibility-criteria">
+              Change<span class="govuk-visually-hidden"> eligibility criterion 7</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Date amendment effective from</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Date</dt>
+          <dd class="govuk-summary-list__value">12 September 2025</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/v01/Change/change-amendment-date">
+              Change<span class="govuk-visually-hidden"> amendment effective date</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Now submit your amendment request</h2>
+      <p class="govuk-body">By submitting this amendment request you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/v01/Change/change-confirmation" method="post" novalidate>
+        <input type="hidden" name="answers-checked" value="true">
+        
+        {{ govukButton({
+          text: "Submit to be checked at your bank"
+        }) }}
+        
+        <p><a href="/v01/Change/change-facility-start" class="govuk-link">Cancel</a></p>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

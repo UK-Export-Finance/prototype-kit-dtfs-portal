@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  What do you need to change? - Get a guarantee for export finance - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">ATLANTIC TRADING COMPANY, Cash facility</span>
+      <h1 class="govuk-heading-l">What do you need to change?</h1>
+
+      <p class="govuk-body">This change will only affect this facility</p>
+
+      <form action="/v01/Change/change-cover-end-date" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-visually-hidden">
+              <h2 class="govuk-fieldset__heading">
+                What do you need to change?
+              </h2>
+            </legend>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="change-cover-end-date" name="change-options" type="checkbox" value="cover-end-date">
+                <label class="govuk-label govuk-checkboxes__label" for="change-cover-end-date">
+                  Cover end date
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="change-facility-value" name="change-options" type="checkbox" value="facility-value">
+                <label class="govuk-label govuk-checkboxes__label" for="change-facility-value">
+                  Facility value
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            Check your records for the most up-to-date values
+          </strong>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <p><a href="#" class="govuk-link">Cancel</a></p>
+      </form>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            I need to change something else
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">To change something else, for example:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>bank's interest margin percentage</li>
+            <li>UKEF exposure percentage</li>
+            <li>UKEF guarantee fee frequency</li>
+          </ul>
+          <p class="govuk-body">Use the Schedule 8 (Form of Amendment and Notification Request Form) and email the completed form to <a href="#" class="govuk-link">stb.pim@ukexportfinance.gov.uk</a></p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+{% endblock %}
