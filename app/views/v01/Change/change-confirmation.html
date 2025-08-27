@@ -10,38 +10,25 @@
     <div class="govuk-grid-column-two-thirds">
 
       {{ govukPanel({
-        titleText: "Amendment request submitted",
-        html: "Your reference number<br><strong>AM-2025-001</strong>"
+        titleText: "Amendment submitted for checking at your bank",
+        html: "We’ve sent you a confirmation email."
       }) }}
 
-      <p class="govuk-body">We have sent you a confirmation email.</p>
+
 
       <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">Your amendment request has been submitted to your bank for checking. They will review the changes and either:</p>
-
+      <p class="govuk-body">Someone at your bank will check what you’ve submitted.</p>
+      <p class="govuk-body">They will either:</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>approve the amendment request</li>
-        <li>request additional information</li>
-        <li>reject the amendment request</li>
+        <li>submit it for automatic approval with UKEF</li>
+        <li>send it back to you for changes</li>
       </ul>
 
-      <p class="govuk-body">You will be notified of the outcome by email.</p>
+      
+      <p class="govuk-body"> <a href="/v01/dashboard-deals  " class="govuk-link">Return to all applications and notices</a></p>
 
-      <h2 class="govuk-heading-m">If you need to make changes</h2>
-
-      <p class="govuk-body">If you need to make changes to your amendment request, contact your bank directly. You cannot edit the request once it has been submitted.</p>
-
-      <h2 class="govuk-heading-m">Help and support</h2>
-
-      <p class="govuk-body">If you have any questions about your amendment request, contact your bank or email <a href="mailto:checker2@ukexportfinance.gov.uk" class="govuk-link">checker2@ukexportfinance.gov.uk</a>.</p>
-
-      {{ govukButton({
-        text: "Return to dashboard",
-        href: "/v01/dashboard-deals",
-        classes: "govuk-button--secondary"
-      }) }}
-
+     
     </div>
   </div>
 {% endblock %}

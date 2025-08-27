@@ -529,23 +529,25 @@
         </tbody>
       </table>
 
-      <!-- MoJ Pagination Component -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+    
       <nav class="moj-pagination" aria-label="Pagination navigation">
-
+    
         <ul class="moj-pagination__list">
           <li class="moj-pagination__item  moj-pagination__item--prev">
             <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> page</span></a>
           </li>
       
-          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 1 of 5">1</a></li>
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=1" aria-label="Page 1 of 5">1</a></li>
       
           <li class="moj-pagination__item moj-pagination__item--active" aria-label="Page 2 of 5" aria-current="page">2</li>
       
-          <li class="moj-pagination__item"><a class="moj-pagination__link" href="" aria-label="Page 3 of 5">3</a></li>
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=3" aria-label="Page 3 of 5">3</a></li>
       
           <li class="moj-pagination__item moj-pagination__item--dots">…</li>
       
-          <li class="moj-pagination__item"><a class="moj-pagination__link" href="" aria-label="Page 5 of 5">5</a></li>
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=5" aria-label="Page 5 of 5">5</a></li>
       
           <li class="moj-pagination__item  moj-pagination__item--next">
             <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
@@ -553,7 +555,11 @@
         </ul>
         <p class="moj-pagination__results">Showing <b>11</b> to <b>20</b> of <b>30</b> results</p>
       </nav>
+    
+        </div>
+      </div>
 
+     
     </div>
   </div>
 
@@ -575,5 +581,9 @@
 
     </div>
   </div>
+
+
+
+
 
 {% endblock %}
