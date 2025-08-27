@@ -80,7 +80,8 @@ router.post('/:version/Change/start', (req, res) => {
           field: 'change-options',
           message: 'Select if  you need to change the cover end date, facility value or both'
         }
-      ]
+      ],
+      changeOptions: changeOptions || []
     })
   } else {
     // Store selections in session
@@ -175,7 +176,8 @@ router.post('/:version/Change/change-facility-value', (req, res) => {
           field: 'new-facility-value',
           message: 'Enter new facility value'
         }
-      ]
+      ],
+      facilityValue
     })
   } else {
     // Store the facility value in session
@@ -216,7 +218,8 @@ router.post('/:version/Change/change-facility-end-date', (req, res) => {
           field: 'facility-end-date',
           message: 'Select if there is an end date for this facility'
         }
-      ]
+      ],
+      hasFacilityEndDate: facilityEndDate
     })
   } else {
     // Store the selection in session
@@ -262,7 +265,8 @@ router.post('/:version/Change/provide-facility-end-date', (req, res) => {
           field: 'new-cover-end-date',
           message: 'Facility end date must be a real date'
         }
-      ]
+      ],
+      facilityEndDate: { day, month, year }
     })
   } else {
     // Store the facility end date in session
@@ -309,7 +313,8 @@ router.post('/:version/Change/provide-bank-review-date', (req, res) => {
           field: 'new-cover-end-date',
           message: 'Bank review date must be a real date'
         }
-      ]
+      ],
+      bankReviewDate: { day, month, year }
     })
   } else {
     // Store the bank review date in session
@@ -421,7 +426,8 @@ router.post('/:version/Change/change-amendment-date', (req, res) => {
           field: 'amendment-effective-date',
           message: 'Date amendment effective from must be provided'
         }
-      ]
+      ],
+      amendmentDate: { day, month, year }
     })
   } else {
     // Store the amendment date in session
