@@ -46,21 +46,6 @@ router.get('/:version/application-details/app-details', (req, res) => {
 })
 
 // Change folder routing with validation and navigation
-router.get('/:version/Change/before-you-start', (req, res) => {
-  const version = req.params.version
-  
-  res.render(`${version}/Change/before-you-start`, {
-    activePage: 'dashboard'
-  })
-})
-
-router.post('/:version/Change/before-you-start', (req, res) => {
-  const version = req.params.version
-  
-  // Continue button redirects to start page
-  res.redirect(`/${version}/Change/start`)
-})
-
 router.get('/:version/Change/start', (req, res) => {
   const version = req.params.version
   
@@ -435,7 +420,6 @@ router.post('/:version/Change/change-amendment-date', (req, res) => {
   const month = req.body['amendment-effective-date-month']
   const year = req.body['amendment-effective-date-year']
   
-  // Check if all date fields are provided
   if (!day || !month || !year) {
     res.render(`${version}/Change/change-amendment-date`, {
       activePage: 'dashboard',
@@ -451,59 +435,12 @@ router.post('/:version/Change/change-amendment-date', (req, res) => {
       ],
       amendmentDate: { day, month, year }
     })
-    return
+  } else {
+    // Store the amendment date in session
+    req.session.amendmentDate = { day, month, year }
+    
+    res.redirect(`/${version}/Change/change-check-answers`)
   }
-  
-  // Create date object from input values
-  const inputDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  const currentDate = new Date()
-  const thirtyDaysFromNow = new Date()
-  thirtyDaysFromNow.setDate(currentDate.getDate() + 30)
-  
-  // Check if the input date is valid
-  if (inputDate.getDate() != parseInt(day) || 
-      inputDate.getMonth() != parseInt(month) - 1 || 
-      inputDate.getFullYear() != parseInt(year)) {
-    res.render(`${version}/Change/change-amendment-date`, {
-      activePage: 'dashboard',
-      validationErrors: true,
-      errors: {
-        'amendment-effective-date': 'Date amendment effective from must be a real date'
-      },
-      errorMessages: [
-        {
-          field: 'amendment-effective-date',
-          message: 'Date amendment effective from must be a real date'
-        }
-      ],
-      amendmentDate: { day, month, year }
-    })
-    return
-  }
-  
-  // Check if the date is more than 30 days from now
-  if (inputDate > thirtyDaysFromNow) {
-    res.render(`${version}/Change/change-amendment-date`, {
-      activePage: 'dashboard',
-      validationErrors: true,
-      errors: {
-        'amendment-effective-date': 'You entered an amendment date more than 30 days from now. Amendments must be effective within the next 30 days – come back later or use the Schedule 8 form.'
-      },
-      errorMessages: [
-        {
-          field: 'amendment-effective-date',
-          message: 'You entered an amendment date more than 30 days from now. Amendments must be effective within the next 30 days – come back later or use the Schedule 8 form.'
-        }
-      ],
-      amendmentDate: { day, month, year }
-    })
-    return
-  }
-  
-  // Store the amendment date in session
-  req.session.amendmentDate = { day, month, year }
-  
-  res.redirect(`/${version}/Change/change-check-answers`)
 })
 
 router.get('/:version/Change/change-check-answers', (req, res) => {
