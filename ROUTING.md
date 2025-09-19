@@ -19,9 +19,14 @@ The routing is configured in `app/routes.js` and uses dynamic version parameters
 
 ### Change Folder Routes (Amendment Process)
 
-The Change folder contains a 7-page workflow for making amendments to facilities:
+The Change folder contains an 8-page workflow for making amendments to facilities:
 
-#### **Page Flow: 0 → 1 → 2 → 3 → 4 → 5 → 6**
+#### **Page Flow: Before → 0 → 1 → 2 → 3 → 4 → 5 → 6**
+
+0. **`/:version/Change/before-you-start`** (Before Page)
+   - Information page explaining what's needed for amendment
+   - Lists required information and important notice
+   - POST: Continue button redirects to start page
 
 1. **`/:version/Change/start`** (Page 0)
    - Initial selection page with checkboxes for what needs to be changed
@@ -79,7 +84,8 @@ The Change folder contains a 7-page workflow for making amendments to facilities
 - Facility Name cells → `/{version}/application-details/app-details`
 
 #### Change Process Links
-- Start amendment process → `/{version}/Change/start`
+- Start amendment process → `/{version}/Change/before-you-start`
+- Before you start → `/{version}/Change/start`
 - Each page links to the next in sequence
 - Change links on check answers page return to respective input pages
 

@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set activePage = "dashboard" %}
+
+{% block pageTitle %}
+  Before you start - Get a guarantee for export finance - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">UK TRADE WORKS LTD, Cash facility</span>
+      <h1 class="govuk-heading-l">Before you start</h1>
+
+      <p class="govuk-body">You'll need the following information to make an amendment:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>New cover end date and new facility value</li>
+        <li>Declarations</li>
+        <li>Date this amendment will be effective from</li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        You cannot save the amendment request as a draft or return to it later.
+      </div>
+
+      <form action="" method="post">
+        <div class="govuk-button-group govuk-!-margin-top-6">
+          {{ govukButton({
+            text: "Continue",
+            isStartButton: true
+          }) }}
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

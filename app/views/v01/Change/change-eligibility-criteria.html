@@ -56,9 +56,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-1-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                     <label class="govuk-label">
-                      1. The Facility is not an Affected Facility
+                     <b> 1. The Facility is not an Affected Facility</b>
                     </label>
                   </legend>
+                  <div id="" class="govuk-hint">
+                    An affected facility is a facility that is affected by a conflict of interest.
+                  </div>
                   
                   {% if validationErrors and errors['eligibility-1'] %}
                   <p id="eligibility-1-error" class="govuk-error-message">
@@ -87,9 +90,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-2-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                      2. Neither the Exporter, nor its UK Parent Obligor is an Affected Person
+                      <b> 2. Neither the Exporter, nor its UK Parent Obligor is an Affected Person</b>
                     </label>
                   </legend>
+                  <div id="" class="govuk-hint">
+                    A UK Parent Obligor is a person that is the parent of the exporter.
+                  </div>
                   
                   {% if validationErrors and errors['eligibility-2'] %}
                   <p id="eligibility-2-error" class="govuk-error-message">
@@ -118,10 +124,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-3-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                        3. The Cover Period of the Facility is within the Facility Maximum Cover Period
+                        <b> 3. The Cover Period of the Facility is within the Facility Maximum Cover Period</b>
                     </label>
                   </legend>
-                  
+                  <div id="" class="govuk-hint">
+                    The cover period is the period of time for which the facility is covered.
+                  </div>
                   {% if validationErrors and errors['eligibility-3'] %}
                   <p id="eligibility-3-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-3'] }}
@@ -150,10 +158,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-4-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                        4. The Covered Facility Limit (converted for this purpose into the Master Guarantee Base Currency) of the Facility is not more than the lesser of (i) the Available Master Guarantee Limit; and the Available Obligor(s) Limit
+                        <b> 4. The Covered Facility Limit (converted for this purpose into the Master Guarantee Base Currency) of the Facility is not more than the lesser of (i) the Available Master Guarantee Limit; and the Available Obligor(s) Limit</b>
                     </label>
                   </legend>
-                  
+                  <div id="" class="govuk-hint">
+                    The covered facility limit is the limit of the facility that is covered.
+                  </div>
                   {% if validationErrors and errors['eligibility-4'] %}
                   <p id="eligibility-4-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-4'] }}
@@ -183,10 +193,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-5-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                        5. The Bank has completed its Bank Due Diligence to its satisfaction in accordance with its policies and procedures without having to escalate any issue raised during its Bank Due Diligence internally to any Relevant Person for approval as part of its usual Bank Due Diligence
+                        <b> 5. The Bank has completed its Bank Due Diligence to its satisfaction in accordance with its policies and procedures without having to escalate any issue raised during its Bank Due Diligence internally to any Relevant Person for approval as part of its usual Bank Due Diligence</b>
                     </label>
                   </legend>
-                  
+                  <div id="" class="govuk-hint">
+                    The bank due diligence is the process of the bank checking the exporter and its UK Parent Obligor to make sure they are eligible for the facility.
+                  </div>
                   {% if validationErrors and errors['eligibility-5'] %}
                   <p id="eligibility-5-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-5'] }}
@@ -214,10 +226,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-6-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                        6. The Cover Limit of the Facility has not exceeded a cumulative total of 25% of the UK Parent Obligor's consolidated net assets at the date of the Facility unless the reduction of the Cover Limit is due to other changes that occurred as a result of the passage of time and the State has notified the SFS of the amendment of the Facility
+                        <b> 6. The Cover Limit of the Facility has not exceeded a cumulative total of 25% of the UK Parent Obligor's consolidated net assets at the date of the Facility unless the reduction of the Cover Limit is due to other changes that occurred as a result of the passage of time and the State has notified the SFS of the amendment of the Facility</b>
                     </label>
                   </legend>
-                  
+                  <div id="" class="govuk-hint">
+                    The cover limit is the limit of the facility that is covered.
+                  </div>
                   {% if validationErrors and errors['eligibility-6'] %}
                   <p id="eligibility-6-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-6'] }}
@@ -246,10 +260,12 @@
                 <fieldset class="govuk-fieldset" aria-describedby="eligibility-7-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                       <label class="govuk-label">
-                        7. The Exporter has not provided the Bank with any new information that has not been previously made available to the Bank
+                        <b> 7. The Exporter has not provided the Bank with any new information that has not been previously made available to the Bank</b>
                     </label>
                   </legend>
-                  
+                  <div id="" class="govuk-hint">
+                    The exporter has not provided the bank with any new information that has not been previously made available to the bank.
+                  </div>
                   {% if validationErrors and errors['eligibility-7'] %}
                   <p id="eligibility-7-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{ errors['eligibility-7'] }}
